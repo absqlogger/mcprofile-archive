@@ -216,6 +216,10 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     }
     console.log(result2);
 
+    if(result2.includes("OWNER"))
+    {
+        result2 = "Owner"
+    }
     if(result2.includes("ADMIN"))
     {
         result2 = "Admin"
