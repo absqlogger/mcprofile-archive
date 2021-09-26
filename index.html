@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://mcuserna.me/assets/js/skinview3d.bundle.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <title>Placeholder</title>
+<style>
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    text-align: center;
+    
+}  
+
+.flex-child:first-child {
+    
+} 
+
+    </style>
+            
+    </head>
+
+    <body onload="getinfo()" style="background-color:#1a1a1a">
+        <div style="text-align:center">
+        <input onkeydown="searchfrominput()" id="searchbar" style="border:none; border-radius:5px;outline:none;background-color:#262626;color:white;font-family:'Segoe UI'; height:20px; width:250px;" placeholder="Search a user..." type="text"></input>
+        <button onclick="search()" style="margin:5px;height:22px;cursor:pointer; width:40px;background-color:#262626; border-radius:5px; border:none"><i style="color:white" class="fa fa-search"></i></button>
+        </div><br>
+        <div class="flex-container">
+        <div class="flex-child">
+            <label id="username" style="font-family:'Segoe UI'; color:white; font-size:42px"></label><br><br>
+            <canvas style="border: 2px solid #262626; border-radius:20px; cursor:all-scroll;  background-image: url(pattern_checkerboard_1_2_0-0_0_1__262626_1a1a1a_1a1a1a.png);" id="skin_container"></canvas><br>
+            <button id="downloadbutton" style="border: none; cursor:pointer; border-radius:10px; background-color:#262626; color:white; width:245px; height:30px; font-family:'Segoe UI'; font-size:14px;" onclick="download()"><i style="color:white" class="fa fa-download"></i> Download Skin</button>
+            <button id="applybutton" style="border: none; margin:5px; cursor:pointer; border-radius:10px; background-color:#262626; color:white; width:245px; height:30px; font-family:'Segoe UI'; font-size:14px;" onclick="apply()"><i style="color:white" class="fa fa-share"></i> Apply To Account</button>
+
+        </div>
+        <div class="flex-child" >
+            <label id="historylabel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>History</b></label><br>
+            <label id="history" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br>
+        </div>
+         <div class="flex-child" >
+            <label id="UUIDlabel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>UUID</b></label><br>
+            <label id="uuid" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br><br><br>
+            <label id="linkslabel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>Links</b></label><br>
+            <label id="links" style="font-family:'Segoe UI'; color:white; font-size:18px"></label>
+        </div>
+        </div>
+                    
+
+ <script>
+
+
+
+    let result = "";
+    let counter = 0;
+async function getinfo(){
+
+let url = window.location.href;
+var segments = url.split('?');
+
+document.getElementById("searchbar").value = segments[1];
+    let skinViewer = new skinview3d.SkinViewer({
+		canvas: document.getElementById("skin_container"),
+		width: 240,
+		height: 355,
+		skin: "https://minotar.net/skin/MHF_Steve"
+	});
+
+    let control = skinview3d.createOrbitControls(skinViewer);
+	control.enableRotate = true;
+	control.enableZoom = false;
+	control.enablePan = false;
+
+    let walk = skinViewer.animations.add(skinview3d.WalkingAnimation);
+    walk.speed = 0.5
+
+
+
+let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
+const json = await response.json();
+if(response.status == 404)
+{
+    document.getElementById("username").style.visibility = "hidden";
+ document.getElementById("uuid").style.visibility = "hidden";
+ document.getElementById("links").style.visibility = "hidden";
+ document.getElementById("skin_container").style.visibility = "hidden";
+ document.getElementById("UUIDlabel").style.visibility = "hidden";
+ document.getElementById("linkslabel").style.visibility = "hidden";
+ document.getElementById("downloadbutton").style.visibility = "hidden";
+ document.getElementById("applybutton").style.visibility = "hidden";
+ document.getElementById("historylabel").innerHTML = "<b>404</b>";
+ document.getElementById("history").innerHTML = "User not found.";
+ document.title = "404 | MCProfile"
+
+}
+ var name = json.username;
+ skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid);
+ if(name == "Ranc")
+ {
+   name = "Ranc😎"
+   document.getElementById("username").style.color = "#db9209"
+   skinViewer.loadCape("https://server.cloaksplus.com/capes/sex.png");
+ }
+ 
+ skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
+document.title = json.username + " | MCProfile";
+document.getElementById("username").innerHTML = "<b>" + name + "</b>";
+const history = [];
+const changedat = [];
+let names = json.username_history;
+for(var i=0; i< names.length;i++){
+        history.push(names[i]['username']);
+        changedat.push(names[i]['changed_at']);       
+    }
+
+
+    
+history.forEach((num1, index) => {
+  const num2 = changedat[index]
+  counter++;
+  let test = "";
+  if(num2 == undefined)
+  {
+     test = "(Original Name)"
+  }
+  else
+  {
+      test = num2.replace(/T/g, ' ').replace(/Z/g, ' ').replace(/-/g, '/')
+      test = test.substring(0, test.length - 5);
+      
+  }
+  result = result + counter + ". <b>" + num1 + "</b> / <i>" + test + "</i><br>";
+});
+
+document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>";
+document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '')
+document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "https://namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "https://mcuserna.me/?lookup=?" + json.username + "</a>"
+}
+
+function download(){
+    
+let url = window.location.href;
+var segments = url.split('?');
+    window.location.href = "https://minotar.net/download/" + segments[1];
+}
+
+function apply(){
+
+    let url = window.location.href;
+var segments = url.split('?');
+    window.location.href = "https://www.minecraft.net/en-us/profile/skin/remote?url=https://minotar.net/skin/" + segments[1];
+
+
+}
+
+function search(){
+    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value
+}
+
+function searchfrominput(){
+     if (event.keyCode === 13) {
+    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value
+     }
+}
+         
+        </script>
+
+        
+    </body>
+
+</html>
