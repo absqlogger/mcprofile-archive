@@ -49,7 +49,9 @@
         </div>
         <div class="flex-child" >
             <label id="historylabel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>History</b></label><br>
-            <label id="history" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br>
+            <label id="history" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br><br><br>
+	    <label id="hypixel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>Hypixel Stats</b></label><br>
+            <label id="stats" style="font-family:'Segoe UI'; color:white; font-size:18px"></label>
         </div>
          <div class="flex-child" >
             <label id="UUIDlabel" style="font-family:'Segoe UI'; color:white; font-size:25px"><b>UUID</b></label><br>
@@ -109,6 +111,51 @@ if(response.status == 404)
 	//404 message page if user does not exist
 
 }
+	
+	 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
+const hypixeljson = await hypixelresponse.json();
+var lastloginformatted = "";
+var firstloginformatted = "";
+var lastlogintimestamp = hypixeljson.player.lastLogin
+var lastlogindate = new Date(lastlogintimestamp);
+let lastloginyear = lastlogindate.getFullYear();
+let lastloginday = ("0" + lastlogindate.getDate()).slice(-2);
+let lastloginmonth = ("0" + (lastlogindate.getMonth() + 1)).slice(-2);
+let lastloginhours = lastlogindate.getHours();
+let lastloginminutes = lastlogindate.getMinutes();
+let lastloginseconds = lastlogindate.getSeconds();
+if(lastloginseconds < 10)
+{
+    lastloginseconds = "0" + lastloginseconds
+}
+lastloginformatted = lastloginyear + "/" + lastloginmonth + "/" + lastloginday + " " + lastloginhours + ":" + lastloginminutes + ":" + lastloginseconds;
+
+
+var firstlogintimestamp = hypixeljson.player.firstLogin
+var firstlogindate = new Date(firstlogintimestamp);
+let firstloginyear = firstlogindate.getFullYear();
+let firstloginday = ("0" + firstlogindate.getDate()).slice(-2);
+let firstloginmonth = ("0" + (firstlogindate.getMonth() + 1)).slice(-2);
+let firstloginhours = firstlogindate.getHours();
+let firstloginminutes = firstlogindate.getMinutes();
+let firstloginseconds = firstlogindate.getSeconds();
+if(firstloginseconds < 10)
+{
+    firstloginseconds = "0" + firstloginseconds
+}
+
+if(firstlogintimestamp == undefined)
+{
+    firstloginformatted = "Unknown"
+}
+
+if(lastlogintimestamp == undefined)
+{
+    lastloginformatted = "Unknown"
+}
+firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstloginday + " " + firstloginhours + ":" + firstloginminutes + ":" + firstloginseconds;
+document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b>" 
+	
 	
 	var link = document.querySelector("link[rel~='icon']");
 if (!link) {
