@@ -252,6 +252,10 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     {
         result2 = "VIP"
     }
+    else if(result2.includes(""))
+    {
+        result2 = "None"
+    }
 
 	
 document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b><br>Rank(Beta): <b>" + result2 + "<br>" 
