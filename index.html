@@ -66,17 +66,18 @@
 
     let result = "";
     let counter = 0;
+    //variables set for name history later on
 async function getinfo(){
 
 let url = window.location.href;
-var segments = url.split('?');
+var segments = url.split('?'); //gets the name from the url
 
 document.getElementById("searchbar").value = segments[1];
     let skinViewer = new skinview3d.SkinViewer({
 		canvas: document.getElementById("skin_container"),
 		width: 240,
 		height: 355,
-		skin: "https://minotar.net/skin/MHF_Steve"
+		skin: "https://minotar.net/skin/MHF_Steve" // placeholder skin
 	});
 
     let control = skinview3d.createOrbitControls(skinViewer);
@@ -85,12 +86,12 @@ document.getElementById("searchbar").value = segments[1];
 	control.enablePan = false;
 
     let walk = skinViewer.animations.add(skinview3d.WalkingAnimation);
-    walk.speed = 0.5
+    walk.speed = 0.5 //animations for 3d skin viewer
 
 
 
 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
-const json = await response.json();
+const json = await response.json(); //fetches info from api
 if(response.status == 404)
 {
     document.getElementById("username").style.visibility = "hidden";
@@ -104,6 +105,8 @@ if(response.status == 404)
  document.getElementById("historylabel").innerHTML = "<b>404</b>";
  document.getElementById("history").innerHTML = "User not found.";
  document.title = "404 | MCProfile"
+	
+	//404 message page if user does not exist
 
 }
 	
@@ -113,36 +116,39 @@ if (!link) {
     link.rel = 'icon';
     document.getElementsByTagName('head')[0].appendChild(link);
 }
-link.href = 'https://crafatar.com/avatars/' + json.uuid;
+link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the tab area to the head of the users skin
 	
  var name = json.username;
- skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid);
+ skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
  if(name == "Ranc")
  {
    name = "<font color=\"#a33131\">[</font>OWNER<font color=\"#a33131\">]</font>" + " Ranc😎"
+   skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
+	 // if username is creators name, set the username label to [OWNER] rank and load custom cape to model
    
  }
  if(name == "RaheemSterling")
  {
    skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
+	 // if username is friends name, also load custom cape to model
  }
  
- skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
-document.title = json.username + " | MCProfile";
-document.getElementById("username").innerHTML = "<b>" + name + "</b>";
+ skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid); //if user has a cape, load it onto the model
+document.title = json.username + " | MCProfile"; // set title of document to users name
+document.getElementById("username").innerHTML = "<b>" + name + "</b>"; // sets username label to name
 const history = [];
-const changedat = [];
+const changedat = []; // arrays for name history
 let names = json.username_history;
 for(var i=0; i< names.length;i++){
         history.push(names[i]['username']);
         changedat.push(names[i]['changed_at']);       
-    }
+    } // loops through json and adds previous names and change dates to respective arrays
 
 
     
 history.forEach((num1, index) => {
   const num2 = changedat[index]
-  counter++;
+  counter++; // adds numbers to each name 
   let test = "";
   if(num2 == undefined)
   {
@@ -156,37 +162,38 @@ history.forEach((num1, index) => {
   }
   result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <i>" + test + "</i><br>";
 	
-	
+	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
 });
 
-document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>";
-document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '')
+document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>"; // sets the text of the name history label to the formatted name history created above and also adds extra text showing what order the history is in
+document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '') // sets the uuid label to the spaces uuid and unspaces variant
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
+// sets the links label text to all of the other minecraft name searching websites
 }
 
 function download(){
     
 let url = window.location.href;
 var segments = url.split('?');
-    window.location.href = "https://minotar.net/download/" + segments[1];
+    window.location.href = "https://minotar.net/download/" + segments[1]; // redirects to the skin download page
 }
 
 function apply(){
 
     let url = window.location.href;
 var segments = url.split('?');
-    window.location.href = "https://www.minecraft.net/en-us/profile/skin/remote?url=https://minotar.net/skin/" + segments[1];
+    window.location.href = "https://www.minecraft.net/en-us/profile/skin/remote?url=https://minotar.net/skin/" + segments[1]; // redirects to the minecraft skin change website with skin of user
 
 
 }
 
 function search(){
-    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value
+    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value // search function changes the url, which triggers the info function above
 }
 
 function searchfrominput(){
      if (event.keyCode === 13) {
-    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value
+    window.location.href = "https://mcprofile.github.io/?" + document.getElementById("searchbar").value // allows for the enter key to be pressed to search
      }
 }
          
