@@ -81,13 +81,7 @@ document.getElementById("searchbar").value = segments[1];
     let walk = skinViewer.animations.add(skinview3d.WalkingAnimation);
     walk.speed = 0.5
 
-var link = document.querySelector("link[rel~='icon']");
-if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.getElementsByTagName('head')[0].appendChild(link);
-}
-link.href = 'https://stackoverflow.com/favicon.ico';
+
 
 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
 const json = await response.json();
@@ -106,6 +100,15 @@ if(response.status == 404)
  document.title = "404 | MCProfile"
 
 }
+	
+	var link = document.querySelector("link[rel~='icon']");
+if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+link.href = 'https://crafatar.com/avatars/' + json.uuid;
+	
  var name = json.username;
  skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid);
  if(name == "Ranc")
