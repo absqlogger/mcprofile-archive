@@ -220,23 +220,23 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     {
         result2 = "Owner"
     }
-    if(result2.includes("ADMIN"))
+    else if(result2.includes("ADMIN"))
     {
         result2 = "Admin"
     }
-    if(result2.includes("MOD"))
+    else if(result2.includes("MOD"))
     {
         result2 = "Mod"
     }
-    if(result2.includes("HELPER"))
+    else if(result2.includes("HELPER"))
     {
         result2 = "Helper"
     }
-    if(result2.includes("GAME_MASTER"))
+    else if(result2.includes("GAME_MASTER"))
     {
         result2 = "Game Master"
     }
-    if(result2.includes("YOUTUBE"))
+    else if(result2.includes("YOUTUBE"))
     {
         result2 = "YouTube"
     }
@@ -252,11 +252,11 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     {
         result2 = "VIP+"
     }
-    else if(result2.includes("VIP"))
+    else if (result2.includes("VIP"))
     {
         result2 = "VIP"
     }
-    else if(result2.includes(""))
+    else (result2.includes(""))
     {
         result2 = "None"
     }
