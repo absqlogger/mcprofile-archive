@@ -172,7 +172,90 @@ if(lastlogintimestamp == undefined)
     lastloginformatted = "Unknown"
 }
 firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstloginday + " " + firstloginhours + ":" + firstloginminutes + ":" + firstloginseconds;
-document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b>" 
+	
+	let packageRank = hypixeljson.player.packageRank;
+    let newPackageRank = hypixeljson.player.newPackageRank;
+    let monthlyPackageRank = hypixeljson.player.monthlyPackageRank;
+    let rank = hypixeljson.player.rank;
+    let prefix = hypixeljson.player.prefix;
+    let result2 = "";
+    if(packageRank == undefined || packageRank == "NONE")
+    {
+        result2 = result2 + "";
+    }
+    else{
+        result2 = result2 + packageRank
+    }
+    if(newPackageRank == undefined || newPackageRank == "NONE")
+    {
+        result2 = result2 + "";
+    }
+    else{
+        result2 = result2 + newPackageRank
+    }
+    if(monthlyPackageRank == undefined || monthlyPackageRank == "NONE")
+    {
+        result2 = result2 + "";
+    }
+    else{
+        result2 = result2 + monthlyPackageRank
+    }
+    if(rank == undefined || rank == "NONE")
+    {
+        result2 = result2+ ""
+    }
+    else{
+        result2 = result2 + rank
+    }
+    if(prefix == undefined || prefix == "NONE")
+    {
+        result2 = result2 + ""
+    }
+    else{
+        result2 = result2 + prefix
+    }
+    console.log(result2);
+
+    if(result2.includes("ADMIN"))
+    {
+        result2 = "Admin"
+    }
+    if(result2.includes("MOD"))
+    {
+        result2 = "Mod"
+    }
+    if(result2.includes("HELPER"))
+    {
+        result2 = "Helper"
+    }
+    if(result2.includes("GAME_MASTER"))
+    {
+        result2 = "Game Master"
+    }
+    if(result2.includes("YOUTUBE"))
+    {
+        result2 = "YouTube"
+    }
+    else if(result2.includes("VIP_PLUS"))
+    {
+        result2 = "VIP+"
+    }
+    else if(result2.includes("VIP"))
+    {
+        result2 = "VIP"
+    }
+    else if(result2.includes("MVP_PLUS"))
+    {
+        result2 = "MVP+"
+    }
+    else if(result2.includes("SUPERSTAR"))
+    {
+        result2 = "MVP++"
+    }
+
+
+	
+document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b><br>Rank(Beta): <b>" + result2 + "<br>" 
 	
 	
 	var link = document.querySelector("link[rel~='icon']");
