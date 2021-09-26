@@ -128,6 +128,22 @@ if(lastloginseconds < 10)
 {
     lastloginseconds = "0" + lastloginseconds
 }
+if(lastloginminutes < 10)
+{
+    lastloginminutes = "0" + lastloginminutes
+}
+if(lastloginhours < 10)
+{
+    lastloginhours = "0" + lastloginhours
+}
+if(lastloginday < 10)
+{
+    lastloginday = "0" + lastloginday
+}
+if(lastloginmonth < 10)
+{
+    lastloginmonth  = "0" + lastloginmonth 
+}
 lastloginformatted = lastloginyear + "/" + lastloginmonth + "/" + lastloginday + " " + lastloginhours + ":" + lastloginminutes + ":" + lastloginseconds;
 
 
