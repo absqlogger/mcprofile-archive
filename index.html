@@ -236,6 +236,14 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     {
         result2 = "YouTube"
     }
+    else if(result2.includes("SUPERSTAR"))
+    {
+        result2 = "MVP++"
+    }
+    else if(result2.includes("MVP_PLUS"))
+    {
+        result2 = "MVP+"
+    }
     else if(result2.includes("VIP_PLUS"))
     {
         result2 = "VIP+"
@@ -244,15 +252,6 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     {
         result2 = "VIP"
     }
-    else if(result2.includes("MVP_PLUS"))
-    {
-        result2 = "MVP+"
-    }
-    else if(result2.includes("SUPERSTAR"))
-    {
-        result2 = "MVP++"
-    }
-
 
 	
 document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b><br>Rank(Beta): <b>" + result2 + "<br>" 
