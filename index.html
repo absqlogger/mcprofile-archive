@@ -122,6 +122,7 @@ link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the 
  skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
  if(name == "Ranc")
  {
+   document.getElementById("username").style.fontFamily = "Comic Sans MS";
    name = "<font color=\"#a33131\">[</font>OWNER<font color=\"#a33131\">]</font>" + " Ranc😎"
    skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
 	 // if username is creators name, set the username label to [OWNER] rank and load custom cape to model
@@ -129,6 +130,7 @@ link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the 
  }
  if(name == "RaheemSterling")
  {
+   name = "<font color=\"#cc0202\">[</font>OppChinga<font color=\"#cc0202\">]</font>" + " RaheemSterling"
    skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
 	 // if username is friends name, also load custom cape to model
  }
