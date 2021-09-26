@@ -158,7 +158,7 @@ history.forEach((num1, index) => {
 
 document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>";
 document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '')
-document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "https://namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "https://mcuserna.me/?lookup=?" + json.username + "</a>"
+document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 }
 
 function download(){
