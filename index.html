@@ -294,7 +294,14 @@ function searchfrominput(){
 		 }
 		 else
 		 {
-			 skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
+			 if(response.status == 404)
+			 {
+			 skinViewer.loadCape(null);
+			 }
+			 else
+			 {
+				 skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
+			 }
 		 }
 	 }
 	 
