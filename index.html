@@ -178,6 +178,10 @@ document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"col
 	
 		 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
 const hypixeljson = await hypixelresponse.json();
+if(hypixeljson.player == null)
+{
+document.getElementById("stats").innerHTML = "User has never joined hypixel."
+}
 var lastloginformatted = "";
 var firstloginformatted = "";
 var lastlogintimestamp = hypixeljson.player.lastLogin
