@@ -280,10 +280,12 @@ function searchfrominput(){
      }
 	
 }
-	 let response3 = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
-                        const json3 = await response3.json();
+
 	 
-	 function checkifchecked(){
+	async function checkifchecked(){
+		 	 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
+                        const json = await response.json();
+		 
 		 if(document.getElementById("test").checked)
 		 {
 			 skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
