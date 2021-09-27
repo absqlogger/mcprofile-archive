@@ -111,8 +111,72 @@ if(response.status == 404)
 	//404 message page if user does not exist
 
 }
+ 
 	
-	 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
+	
+	var link = document.querySelector("link[rel~='icon']");
+if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the tab area to the head of the users skin
+	
+ var name = json.username;
+ skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
+ if(name == "Ranc")
+ {
+   document.getElementById("username").style.fontFamily = "Comic Sans MS";
+   name = "<font color=\"#a33131\">[</font>OWNER<font color=\"#a33131\">]</font>" + " Ranc😎"
+   skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
+	 // if username is creators name, set the username label to [OWNER] rank and load custom cape to model
+   
+ }
+ if(name == "RaheemSterling")
+ {
+   name = "<font color=\"#cc0202\">[</font>OppChinga<font color=\"#cc0202\">]</font>" + " RaheemSterling"
+   skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
+	 // if username is friends name, also load custom cape to model
+ }
+ 
+ skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid); //if user has a cape, load it onto the model
+document.title = json.username + " | MCProfile"; // set title of document to users name
+document.getElementById("username").innerHTML = "<b>" + name + "</b>"; // sets username label to name
+const history = [];
+const changedat = []; // arrays for name history
+let names = json.username_history;
+for(var i=0; i< names.length;i++){
+        history.push(names[i]['username']);
+        changedat.push(names[i]['changed_at']);       
+    } // loops through json and adds previous names and change dates to respective arrays
+
+
+    
+history.forEach((num1, index) => {
+  const num2 = changedat[index]
+  counter++; // adds numbers to each name 
+  let test = "";
+  if(num2 == undefined)
+  {
+     test = "(Original Name)"
+  }
+  else
+  {
+      test = num2.replace(/T/g, ' ').replace(/Z/g, ' ').replace(/-/g, '/')
+      test = test.substring(0, test.length - 5);
+      
+  }
+  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <i>" + test + "</i><br>";
+	
+	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
+});
+
+document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>"; // sets the text of the name history label to the formatted name history created above and also adds extra text showing what order the history is in
+document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '') // sets the uuid label to the spaces uuid and unspaces variant
+document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
+// sets the links label text to all of the other minecraft name searching websites
+	
+		 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
 const hypixeljson = await hypixelresponse.json();
 var lastloginformatted = "";
 var firstloginformatted = "";
@@ -262,70 +326,7 @@ firstloginformatted = firstloginyear + "/" + firstloginmonth + "/" + firstlogind
     }
 
 	
-document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b><br>Rank(Beta): <b>" + result2 + "</b><br>Last Played Game: <b>" + hypixeljson.player.mostRecentGameType + "</b>" 
-	
-	
-	var link = document.querySelector("link[rel~='icon']");
-if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.getElementsByTagName('head')[0].appendChild(link);
-}
-link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the tab area to the head of the users skin
-	
- var name = json.username;
- skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
- if(name == "Ranc")
- {
-   document.getElementById("username").style.fontFamily = "Comic Sans MS";
-   name = "<font color=\"#a33131\">[</font>OWNER<font color=\"#a33131\">]</font>" + " Ranc😎"
-   skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
-	 // if username is creators name, set the username label to [OWNER] rank and load custom cape to model
-   
- }
- if(name == "RaheemSterling")
- {
-   name = "<font color=\"#cc0202\">[</font>OppChinga<font color=\"#cc0202\">]</font>" + " RaheemSterling"
-   skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
-	 // if username is friends name, also load custom cape to model
- }
- 
- skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid); //if user has a cape, load it onto the model
-document.title = json.username + " | MCProfile"; // set title of document to users name
-document.getElementById("username").innerHTML = "<b>" + name + "</b>"; // sets username label to name
-const history = [];
-const changedat = []; // arrays for name history
-let names = json.username_history;
-for(var i=0; i< names.length;i++){
-        history.push(names[i]['username']);
-        changedat.push(names[i]['changed_at']);       
-    } // loops through json and adds previous names and change dates to respective arrays
-
-
-    
-history.forEach((num1, index) => {
-  const num2 = changedat[index]
-  counter++; // adds numbers to each name 
-  let test = "";
-  if(num2 == undefined)
-  {
-     test = "(Original Name)"
-  }
-  else
-  {
-      test = num2.replace(/T/g, ' ').replace(/Z/g, ' ').replace(/-/g, '/')
-      test = test.substring(0, test.length - 5);
-      
-  }
-  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <i>" + test + "</i><br>";
-	
-	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
-});
-
-document.getElementById("history").innerHTML = result + "<br><i>(In order of oldest to newest)</i>"; // sets the text of the name history label to the formatted name history created above and also adds extra text showing what order the history is in
-document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '') // sets the uuid label to the spaces uuid and unspaces variant
-document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
-// sets the links label text to all of the other minecraft name searching websites
+document.getElementById("stats").innerHTML = "First Login: <b>" + firstloginformatted + "</b></br> Last Login: <b>" + lastloginformatted + "</b><br>Rank(Beta): <b>" + result2 + "</b><br>Last Played Game: <b>" + hypixeljson.player.mostRecentGameType + "</b>"
 }
 
 function download(){
