@@ -280,6 +280,8 @@ function searchfrominput(){
      }
 	
 }
+	 let response3 = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
+                        const json3 = await response3.json();
 	 
 	 function checkifchecked(){
 		 if(document.getElementById("test").checked)
@@ -288,9 +290,7 @@ function searchfrominput(){
 		 }
 		 else
 		 {
-			 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
-                        const json = await response.json();
-			 skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
+			 skinViewer.loadCape("https://crafatar.com/capes/" + json3.uuid);
 		 }
 	 }
 	 
