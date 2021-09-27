@@ -73,6 +73,7 @@
     let result = "";
     let skinViewer = null;
     let counter = 0;
+    const json = [];
     //variables set for name history later on
 async function getinfo(){
 
@@ -98,7 +99,7 @@ document.getElementById("searchbar").value = segments[1];
 
 
 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
-const json = await response.json(); //fetches info from api
+json = await response.json(); //fetches info from api
 if(response.status == 404)
 {
     document.getElementById("username").style.visibility = "hidden";
