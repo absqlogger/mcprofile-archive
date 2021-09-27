@@ -42,10 +42,8 @@
         <div class="flex-container">
         <div class="flex-child">
             <label id="username" style="font-family:'Segoe UI'; color:white; font-size:42px"></label><br><br>
-            <canvas style="border: 2px solid #262626; border-radius:20px; cursor:all-scroll;  background-image: url(https://i.imgur.com/rrBuoUM.png);" id="skin_container"></canvas><br>
-	    <input onchange="checkifchecked()" type="checkbox" id="test" name="test">
-            <label style="color:white; font-family:'Segoe UI'" for="test">Perc30 Cape ON/OFF</label><br>
-            <button id="downloadbutton" style="border: none; margin:5px; cursor:pointer; border-radius:10px; background-color:#262626; color:white; width:245px; height:30px; font-family:'Segoe UI'; font-size:14px;" onclick="download()"><i style="color:white" class="fa fa-download"></i> Download Skin</button>
+            <canvas style="border: 2px solid #262626; border-radius:20px; cursor:all-scroll;  background-image: url(https://i.imgur.com/rrBuoUM.png);" id="skin_container"></canvas><br><br>
+            <button id="downloadbutton" style="border: none; cursor:pointer; border-radius:10px; background-color:#262626; color:white; width:245px; height:30px; font-family:'Segoe UI'; font-size:14px;" onclick="download()"><i style="color:white" class="fa fa-download"></i> Download Skin</button>
             <button id="applybutton" style="border: none; margin:5px; cursor:pointer; border-radius:10px; background-color:#262626; color:white; width:245px; height:30px; font-family:'Segoe UI'; font-size:14px;" onclick="apply()"><i style="color:white" class="fa fa-share"></i> Apply To Account</button>
 
         </div>
@@ -282,28 +280,7 @@ function searchfrominput(){
 }
 
 	 
-	async function checkifchecked(){
-		let url = window.location.href;
-                var segments = url.split('?');
-		 	 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
-                        const json = await response.json();
-		 
-		 if(document.getElementById("test").checked)
-		 {
-			 skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
-		 }
-		 else
-		 {
-			 if(response.status == 404)
-			 {
-			 skinViewer.loadCape(null);
-			 }
-			 else
-			 {
-				 skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid);
-			 }
-		 }
-	 }
+
 	 
          
         </script>
