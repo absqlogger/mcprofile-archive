@@ -283,6 +283,8 @@ function searchfrominput(){
 
 	 
 	async function checkifchecked(){
+		let url = window.location.href;
+                var segments = url.split('?');
 		 	 let response = await fetch("https://api.ashcon.app/mojang/v2/user/" + segments[1]);
                         const json = await response.json();
 		 
