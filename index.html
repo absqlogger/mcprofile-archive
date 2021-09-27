@@ -104,6 +104,7 @@ if(response.status == 404)
  document.getElementById("linkslabel").style.visibility = "hidden";
  document.getElementById("downloadbutton").style.visibility = "hidden";
  document.getElementById("applybutton").style.visibility = "hidden";
+ document.getElementById("hypixel").style.visibility = "hidden";
  document.getElementById("historylabel").innerHTML = "<b>404</b>";
  document.getElementById("history").innerHTML = "User not found.";
  document.title = "404 | MCProfile"
@@ -180,7 +181,7 @@ document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"col
 const hypixeljson = await hypixelresponse.json();
 if(hypixeljson.player == null)
 {
-document.getElementById("stats").innerHTML = "User has never joined hypixel."
+document.getElementById("stats").innerHTML = "<b>" + json.username + "</b>has never joined hypixel."
 }
 var lastloginformatted = "";
 var firstloginformatted = "";
