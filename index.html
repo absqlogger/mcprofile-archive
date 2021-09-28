@@ -209,7 +209,11 @@ document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.repla
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 // sets the links label text to all of the other minecraft name searching websites
 	
-	console.log(document.getElementById("history").style.height);
+	if (document.getElementById('history').offsetHeight > 500)
+	{
+		document.getElementById('history').style.height = "500px";
+		document.getElementById('history').style.overflow = "auto";
+	};
 	
 		 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
 const hypixeljson = await hypixelresponse.json();
