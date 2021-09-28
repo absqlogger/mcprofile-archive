@@ -11,10 +11,18 @@
       <meta property="og:url" content="https://mcprofile.github.io/?ranc">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://mcuserna.me/assets/js/skinview3d.bundle.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <title>Placeholder</title>
 <style>
+	@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/ubuntu/v15/4iCs6KVjbNBYlgoKcg72j00.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
 
 .flex-container {
     display: flex;
@@ -130,7 +138,7 @@ link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the 
  skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
  if(name == "Ranc")
  {
-   document.getElementById("username").style.fontFamily = "Comic Sans MS";
+   document.getElementById("username").style.fontFamily = "Ubuntu";
    name = "<font color=\"#a33131\">[</font>OWNER<font color=\"#a33131\">]</font>" + " Ranc😎"
    skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
 	 // if username is creators name, set the username label to [OWNER] rank and load custom cape to model
