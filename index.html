@@ -175,7 +175,7 @@ link.href = 'https://crafatar.com/avatars/' + json.uuid + "?&overlay"; //sets th
    skinViewer.loadCape("https://i.imgur.com/hf9hNJL.png");
  }
  
- 
+ skinViewer.loadCape("https://api.gapple.pw/cors/optifine/" + json.username)
  skinViewer.loadCape("https://crafatar.com/capes/" + json.uuid); //if user has a cape, load it onto the model
 document.title = json.username + " | MCProfile"; // set title of document to users name
 document.getElementById("username").innerHTML = "<b>" + name + "</b>"; // sets username label to name
