@@ -69,7 +69,7 @@ background: #262626;
         <div class="flex-container">
         <div class="flex-child" >
             <label id="historylabel" style="font-family:'Ubuntu'; color:white; font-size:25px"><b>Name History</b></label><br><br>
-		<div style="flex: 1; text-align: center; overflow:auto; height:20%">
+		<div style="overflow:auto; height:300px">
             <label id="history" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br><br>
 		</div>
 	    <hr noshade="" style="border-top: 1px solid white; width:50%" size="1px"><br>
@@ -199,7 +199,7 @@ history.forEach((num1, index) => {
       test = test.substring(0, test.length - 5);
       
   }
-  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <i>" + test + "</i><br>";
+  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <br><i>" + test + "</i><br>";
 	
 	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
 });
