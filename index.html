@@ -197,9 +197,10 @@ history.forEach((num1, index) => {
   {
       test = num2.replace(/T/g, ' ').replace(/Z/g, ' ').replace(/-/g, '/')
       test = test.substring(0, test.length - 5);
+      test = test.replace.replace(/ /g, ', ')
       
   }
-  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b> / <br><i>" + test + "</i><br>";
+  result = result + counter + ". <b>" + "<a style=\"color:white\" href=" + "https://mcprofile.github.io/?" + num1 + ">" + num1 + "</a>" + "</b><br><i>" + test + "</i><br>";
 	
 	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
 });
@@ -209,9 +210,9 @@ document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.repla
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 // sets the links label text to all of the other minecraft name searching websites
 
-	if (document.getElementById('history').offsetHeight > 500)
+	if (document.getElementById('history').offsetHeight > 350)
 	{
-		document.getElementById('historydiv').style.height = "500px";
+		document.getElementById('historydiv').style.height = "350px";
 		document.getElementById('historydiv').style.overflow = "auto";
 	};
 	
