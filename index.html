@@ -155,7 +155,7 @@ if (!link) {
     link.rel = 'icon';
     document.getElementsByTagName('head')[0].appendChild(link);
 }
-link.href = 'https://crafatar.com/avatars/' + json.uuid; //sets the icon in the tab area to the head of the users skin
+link.href = 'https://crafatar.com/avatars/' + json.uuid + "?&overlay"; //sets the icon in the tab area to the head of the users skin
 	
  var name = json.username;
  skinViewer.loadSkin("https://crafatar.com/skins/" + json.uuid); //loads users actual skin onto the 3d render, replaces the placeholder skin from earlier
