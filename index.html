@@ -72,7 +72,7 @@ background: #262626;
         <div class="flex-container">
         <div class="flex-child" >
             <label id="historylabel" style="font-family:'Ubuntu'; color:white; font-size:25px"><b>Name History</b></label><br><br>
-		<div id="historydiv" style="border: 5px solid #555;">
+		<div id="historydiv" style="border: 1px solid #262626; border-radius:10px; width:50%;">
             <label id="history" style="font-family:'Ubuntu'; color:white; font-size:18px"></label><br><br>
 		</div>
 	    
@@ -209,7 +209,7 @@ history.forEach((num1, index) => {
 	// formats the name history to do things such as making the change dates more readable and making each name a hyperlink to its respective mcprofile link and sets it to the result variable defined at the beginning of the function
 });
 
-document.getElementById("history").innerHTML = "<i>(In order of oldest to newest)</i><br><br>" + result; // sets the text of the name history label to the formatted name history created above and also adds extra text showing what order the history is in
+document.getElementById("history").innerHTML = "<br><i>(In order of oldest to newest)</i><br><br>" + result; // sets the text of the name history label to the formatted name history created above and also adds extra text showing what order the history is in
 document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.replace(/-/g, '') // sets the uuid label to the spaces uuid and unspaces variant
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#0b4bb3\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#0b4bb3\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#0b4bb3\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 // sets the links label text to all of the other minecraft name searching websites
