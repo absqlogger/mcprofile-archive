@@ -52,8 +52,6 @@ background: #262626;
     flex: 1;
     text-align: center;
    border: 5px solid #555;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
     
 }  
 
@@ -74,7 +72,7 @@ background: #262626;
         <div class="flex-container">
         <div class="flex-child" >
             <label id="historylabel" style="font-family:'Ubuntu'; color:white; font-size:25px"><b>Name History</b></label><br><br>
-		<div id="historydiv" style=" border: 5px solid #555;">
+		<div id="historydiv" style="overflow:auto; height:100%">
             <label id="history" style="font-family:'Ubuntu'; color:white; font-size:18px"></label><br><br>
 		</div>
 	    
@@ -216,11 +214,11 @@ document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.repla
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 // sets the links label text to all of the other minecraft name searching websites
 
-	if (document.getElementById('history').offsetHeight > 350)
-	{
-		document.getElementById('historydiv').style.height = "350px";
-		document.getElementById('historydiv').style.overflow = "auto";
-	};
+	//if (document.getElementById('history').offsetHeight > 350)
+	//{
+		//document.getElementById('historydiv').style.height = "350px";
+		//document.getElementById('historydiv').style.overflow = "auto";
+	//};
 	
 		 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
 const hypixeljson = await hypixelresponse.json();
