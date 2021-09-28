@@ -69,7 +69,7 @@ background: #262626;
         <div class="flex-container">
         <div class="flex-child" >
             <label id="historylabel" style="font-family:'Ubuntu'; color:white; font-size:25px"><b>Name History</b></label><br><br>
-		<div>
+		<div id="historydiv">
             <label id="history" style="font-family:'Segoe UI'; color:white; font-size:18px"></label><br><br>
 		</div>
 	    <hr noshade="" style="border-top: 1px solid white; width:50%" size="1px"><br>
@@ -209,11 +209,10 @@ document.getElementById("uuid").innerHTML = json.uuid + "<br>" + json.uuid.repla
 document.getElementById("links").innerHTML = "<b>NameMC: </b>" + "<a style=\"color:#cccccc\" href=" + "https://namemc.com/" + json.username + ">" + "namemc.com/" + json.username + "</a><br>" + "<b>MCProfile: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcprofile.github.io/?" + json.username + ">" + "mcprofile.github.io/?" + json.username + "</a>" + "<br><b>mcusername: </b>" + "<a style=\"color:#cccccc\" href=" + "https://mcuserna.me/?lookup=" + json.username + ">" + "mcuserna.me/?lookup=?" + json.username + "</a>"
 // sets the links label text to all of the other minecraft name searching websites
 
-	console.log(document.getElementById('history').offsetHeight);
 	if (document.getElementById('history').offsetHeight > 500)
 	{
-		document.getElementById('history').style.height = "500px";
-		document.getElementById('history').style.overflow = "auto";
+		document.getElementById('historydiv').style.height = "500px";
+		document.getElementById('historydiv').style.overflow = "auto";
 	};
 	
 		 let hypixelresponse = await fetch("https://api.hypixel.net/player?uuid=" + json.uuid + "&key=2b521465-cb27-4692-90a6-6ff341eb068a");
